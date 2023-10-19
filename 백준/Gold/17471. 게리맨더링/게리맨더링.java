@@ -3,21 +3,12 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Node {
-	int to;
-
-	Node(int to) {
-		this.to = to;
-	}
-}
-
 public class Main {
 	static int n;
-	static int cnt;
 	static int ans;
 	static int[] area;
 	static int[] people;
-	static ArrayList<ArrayList<Node>> list;
+	static ArrayList<ArrayList<Integer>> list; // Node 클래스 삭제 후 Integer로 타입 전환해 봄
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -34,11 +25,11 @@ public class Main {
 		}
 
 		for (int i = 1; i <= n; i++) {
-			int neighbor = sc.nextInt(); // 인접 구역 수
+			int neighbor = sc.nextInt(); // 연결 구역 수
 
 			for (int j = 0; j < neighbor; j++) {
-				int to = sc.nextInt(); // 인접 구역 번호
-				list.get(i).add(new Node(to));
+				int to = sc.nextInt(); // 연결 구역 번호
+				list.get(i).add(to); // new Node 대신 to를 추가
 			}
 		}
 
@@ -71,7 +62,7 @@ public class Main {
 					ans = Math.min(ans, min); // 최소값을 ans에 갱신
 				}
 			}
-			
+
 			return;
 		}
 
@@ -104,7 +95,7 @@ public class Main {
 		while (!q.isEmpty()) {
 			int curr = q.poll();
 			for (int i = 0; i < list.get(curr).size(); i++) {
-				int next = list.get(curr).get(i).to; // 연결된 노드 가져오기
+				int next = list.get(curr).get(i); // 연결된 노드 가져오기
 				if (!visited[next] && area[next] == idx) { // 미방문 + idx 선거구일 때
 					q.offer(next);
 					visited[next] = true;
