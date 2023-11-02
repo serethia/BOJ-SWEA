@@ -6,6 +6,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int l = sc.nextInt(); // 1~50
+		long m = 1234567891;
 		String str = sc.next();
 		Map<Character, Integer> map = new HashMap<>();
 		map.put('a', 1);
@@ -34,15 +35,15 @@ public class Main {
 		map.put('x', 24);
 		map.put('y', 25);
 		map.put('z', 26);
-		char[] word = str.toCharArray();
-		int[] value = new int[word.length];
-		for (int i = 0; i < value.length; i++) {
-			value[i] = map.get(word[i]);
-		}
+		char[] word = str.toCharArray(); // a~z
 		long ans = 0;
-		for (int i = 0; i < value.length; i++) {
-			ans += value[i] * Math.pow(31, i);
+		for (int i = l-1; i >= 0; i--) {
+			ans += map.get(word[i]);
+			if (i > 0){
+			ans *= 31;
+			}
+			ans %= m;
 		}
-		System.out.println(ans);
+		System.out.println(ans % m);
 	}
 }
