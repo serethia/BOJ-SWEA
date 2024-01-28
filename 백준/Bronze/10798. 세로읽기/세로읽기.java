@@ -8,7 +8,6 @@ public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		char[][] map = new char[5][15];
-		int[] rowlen = new int[5];
 		sb = new StringBuilder();
 		for (int r = 0; r < 5; r++) {
 			String row = br.readLine();
